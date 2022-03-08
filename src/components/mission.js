@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { joinMission } from '../redux/slices/missionSlice';
+import { toggleMission } from '../redux/slices/missionSlice';
 import style from './mission.module.scss';
 
 export default function Rocket(props) {
@@ -9,7 +9,7 @@ export default function Rocket(props) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(joinMission({ props }));
+    dispatch(toggleMission({ props }));
   };
 
   return (

@@ -1,25 +1,39 @@
-const JOIN_MISSION = 'moonTripsApp/missions/JOIN_MISSION';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const initialState = [];
-
-const joinMission = (payload) => ({
-  type: JOIN_MISSION,
-  payload,
+export const fetchMissions = createAsyncThunk('missions/FETCH_MISSIONS', async () => {
+  const response = await axios.get('https://api.spacexdata.com/v3/missions');
+  const newArr = response.data.map((mission) => ({
+    mission_name: mission.mission_name,
+    mission_id: mission.mission_id,
+    reserved: false,
+    description: mission.description,
+  }));
+  return newArr;
 });
 
-const missionReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case JOIN_MISSION:
-      return [...state, {
-        ...action.payload,
-        status: !action.payload.status,
-      }];
-    default:
-      return state;
-  }
-};
+export const missionsSlice = createSlice({
+  name: 'missions',
+  initialState: { entities: [], loading: 'idle' },
+  reducers: {
+    toggleMission: (state, action) => {
+      const item = (
+        state.entities.find((mission) => mission.mission_id === action.payload));
+      item.reserved = !item.reserved;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchMissions.pending, (state) => {
+        const newState = { ...state, loading: 'pending' };
+        return newState;
+      })
+      .addCase(fetchMissions.fulfilled, (state, action) => {
+        const newState = { ...state, entities: [...action.payload], loading: 'idle' };
+        return newState;
+      });
+  },
+});
 
-export {
-  missionReducer as default,
-  joinMission,
-};
+export const { toggleMission } = missionsSlice.actions;
+export default missionsSlice.reducer;
