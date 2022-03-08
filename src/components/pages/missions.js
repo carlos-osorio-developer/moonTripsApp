@@ -1,10 +1,11 @@
 import Mission from '../mission';
+import style from './missions.module.scss';
 
 const Missions = () => (
   <div>
-    <table>
+    <table className={style.mainContainer}>
       <thead>
-        <tr>
+        <tr className={style.headers}>
           <th>Name</th>
           <th>Description</th>
           <th>Status</th>
