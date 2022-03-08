@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Link, Outlet } from 'react-router-dom';
+import style from './header.module.scss';
 import logo from '../assets/logo.png';
 
 export default function Header() {
@@ -24,18 +25,20 @@ export default function Header() {
   return (
     <div>
       <header>
-        <nav>
-          <Link to="/">
-            <img src={logo} alt="logo" />
-            <h1>MoonTrips App</h1>
-          </Link>
-          <ul>
-            {links.map((link) => (
-              <li key={link.id}>
-                <NavLink to={link.path}>{link.name}</NavLink>
-              </li>
-            ))}
-          </ul>
+        <nav className={style.container}>
+          <div className={style.contentHolder}>
+            <Link to="/" className={style.logo}>
+              <img src={logo} alt="logo" />
+              <h1 className={style.link}>MoonTrips App</h1>
+            </Link>
+            <ul>
+              {links.map((link) => (
+                <li key={link.id}>
+                  <NavLink to={link.path} className={style.link}>{link.name}</NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </nav>
       </header>
       <Outlet />

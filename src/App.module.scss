@@ -7,7 +7,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  width: calc(90% - 60px);
+  margin: 0 auto;
+  padding-top: 60px;
+
+  @media (max-width: 700px) {
+    width: 90%;
+  }
+}
+
+a {
+  .active {
+    background-color: #0290ff;
+    color: white;
+    border-radius: 10%;
+  }
 }
