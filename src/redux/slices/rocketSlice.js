@@ -1,4 +1,4 @@
-const JOIN_ROCKET = 'JOIN_ROCKET';
+const JOIN_ROCKET = 'moonTripsApp/rockets/JOIN_ROCKET';
 
 const initialState = [];
 
@@ -7,7 +7,7 @@ const joinRocket = (payload) => ({
   payload,
 });
 
-const bookReducer = (state = initialState, action) => {
+const rocketReducer = (state = initialState, action) => {
   switch (action.type) {
     case JOIN_ROCKET:
       return [...state, {
@@ -20,6 +20,6 @@ const bookReducer = (state = initialState, action) => {
 };
 
 export {
-  bookReducer as default,
+  rocketReducer as default,
   joinRocket,
 };

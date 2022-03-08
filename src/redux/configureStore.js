@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import bookReducer from './slices/rocketSlice';
+import rocketReducer from './slices/rocketSlice';
+import missionReducer from './slices/missionSlice';
 
 const reducer = combineReducers({
-  book: bookReducer,
+  rocket: rocketReducer,
+  mission: missionReducer,
 });
 
 const store = createStore(reducer, applyMiddleware(logger));
