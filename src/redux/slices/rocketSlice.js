@@ -17,14 +17,12 @@ const getRockets = () => async (dispatch) => {
     name: rocket.rocket_name,
     image: rocket.flickr_images[0],
     description: rocket.description,
+    status: false,
   }));
   dispatch({ type: GET_ROCKETS_SUCESS, payload: data });
 };
 
-const joinRocket = (payload) => ({
-  type: JOIN_ROCKET,
-  payload,
-});
+const joinRocket = (payload) => ({ type: JOIN_ROCKET, payload });
 
 const rocketReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -35,10 +33,17 @@ const rocketReducer = (state = initialState, action) => {
     case GET_ROCKETS_FAILURE:
       return { ...state, loading: false, error: action.payload };
     case JOIN_ROCKET:
-      return [...state, {
-        ...action.payload,
-        status: !action.payload.status,
-      }];
+      return {
+        ...state,
+        rockets: state.rockets.map(
+          (rocket) => {
+            if (rocket.name === action.payload) {
+              return { ...rocket, status: !rocket.status };
+            }
+            return rocket;
+          },
+        ),
+      };
     default:
       return state;
   }

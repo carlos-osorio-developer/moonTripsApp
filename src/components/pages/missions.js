@@ -6,7 +6,7 @@ import style from './missions.module.scss';
 
 const Missions = () => {
   const dispatch = useDispatch();
-  const missions = useSelector((state) => state.missions.entities) || [];
+  const missions = useSelector((state) => state.missions.entities);
 
   useEffect(() => {
     dispatch(fetchMissions());
