@@ -33,6 +33,11 @@
     &.join {
       border: red solid 2px;
       color: red;
+
+      &:hover {
+        background-color: red;
+        color: white;
+      }
     }    
   }
 }

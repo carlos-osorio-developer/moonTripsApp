@@ -5,25 +5,29 @@ import { toggleMission } from '../redux/slices/missionSlice';
 import style from './mission.module.scss';
 
 export default function Rocket(props) {
-  const { name, description } = props;
+  const { name, description, status } = props;
 
-  const [status, setStatus] = useState(false);
+  const [reserved, setReserved] = useState(status);
 
   const dispatch = useDispatch();
   const handleClick = () => {
-    setStatus(!status);
+    setReserved(!reserved);
     dispatch(toggleMission(name));
   };
+
+  const btnStyle = reserved ? style.join : null;
 
   return (
     <tr>
       <td className={style.name}>{name}</td>
       <td className={style.description}>{description}</td>
       <td className={style.statusBadge}>
-        { status ? <p className={style.joined}>Active</p> : <p>Inactive</p> }
+        { reserved ? <p className={style.joined}>Active</p> : <p>Inactive</p> }
       </td>
       <td className={style.statusBtn}>
-        <button type="button" onClick={handleClick}>Join mission</button>
+        <button type="button" onClick={handleClick} className={btnStyle}>
+          { reserved ? 'Leave' : 'Join' }
+        </button>
       </td>
     </tr>
   );
@@ -32,4 +36,5 @@ export default function Rocket(props) {
 Rocket.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };

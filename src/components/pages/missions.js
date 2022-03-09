@@ -9,7 +9,9 @@ const Missions = () => {
   const missions = useSelector((state) => state.missions.entities);
 
   useEffect(() => {
-    dispatch(fetchMissions());
+    if (!missions.length) {
+      dispatch(fetchMissions());
+    }
   }, []);
 
   return (
