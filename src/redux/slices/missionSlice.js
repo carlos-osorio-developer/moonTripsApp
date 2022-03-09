@@ -18,7 +18,7 @@ export const missionsSlice = createSlice({
   reducers: {
     toggleMission: (state, action) => {
       const item = (
-        state.entities.find((mission) => mission.mission_id === action.payload));
+        state.entities.find((mission) => mission.mission_name === action.payload));
       item.reserved = !item.reserved;
     },
   },
