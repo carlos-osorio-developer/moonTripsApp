@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { joinRocket } from '../redux/slices/rocketSlice';
 import style from './rocket.module.scss';
@@ -7,7 +8,10 @@ export default function Rocket(props) {
   const { name, description, image } = props;
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const [reserved, setReserved] = useState(false);
+
+  const handleReserve = () => {
+    setReserved(!reserved);
     dispatch(joinRocket(name));
   };
 
@@ -16,8 +20,11 @@ export default function Rocket(props) {
       <img src={image} alt={name} />
       <div>
         <h2>{name}</h2>
-        <p>{description}</p>
-        <button type="button" onClick={handleClick} className={style.notReserved}>Reserve</button>
+        <p>
+          {reserved ? <span>Reserved</span> : null}
+          {description}
+        </p>
+        <button type="button" onClick={handleReserve} className={style.notReserved}>Reserve</button>
       </div>
     </div>
   );
