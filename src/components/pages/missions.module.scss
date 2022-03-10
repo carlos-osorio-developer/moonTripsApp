@@ -1,0 +1,21 @@
+.mainContainer {
+  margin: auto;
+  width: 90%;
+
+  .headers {
+    text-align: left;
+    font-size: 1.5rem;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
+
+.mainContainer,
+td,
+th {
+  border: #ddd 1px solid;
+  border-collapse: collapse;
+  padding: 8px;
+}

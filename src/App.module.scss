@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: calc(90% - 60px);
+  margin: 0 auto;
+  padding-top: 60px;
+
+  @media (max-width: 700px) {
+    width: 90%;
+  }
+}
+
+a {
+  .active {
+    background-color: #0290ff;
+    color: white;
+    border-radius: 10%;
+  }
+}
