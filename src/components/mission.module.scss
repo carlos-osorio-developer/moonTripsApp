@@ -31,12 +31,12 @@
     }
 
     &.join {
-      border: red solid 2px;
+      border-color: red;
       color: red;
 
       &:hover {
-        background-color: red;
-        color: white;
+        background-color: white;
+        opacity: 0.5;
       }
     }    
   }

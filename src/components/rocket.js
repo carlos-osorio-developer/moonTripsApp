@@ -5,15 +5,22 @@ import { joinRocket } from '../redux/slices/rocketSlice';
 import style from './rocket.module.scss';
 
 export default function Rocket(props) {
-  const { name, description, image } = props;
+  const {
+    name,
+    description,
+    image,
+    status,
+  } = props;
   const dispatch = useDispatch();
 
-  const [reserved, setReserved] = useState(false);
+  const [reserved, setReserved] = useState(status);
 
   const handleReserve = () => {
     setReserved(!reserved);
     dispatch(joinRocket(name));
   };
+
+  const btnStyle = reserved ? style.reserved : style.notReserved;
 
   return (
     <div className={style.container}>
@@ -24,7 +31,9 @@ export default function Rocket(props) {
           {reserved ? <span>Reserved</span> : null}
           {description}
         </p>
-        <button type="button" onClick={handleReserve} className={style.notReserved}>Reserve</button>
+        <button type="button" onClick={handleReserve} className={btnStyle}>
+          {reserved ? 'Unreserve' : 'Reserve'}
+        </button>
       </div>
     </div>
   );
@@ -34,4 +43,5 @@ Rocket.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  status: PropTypes.bool.isRequired,
 };

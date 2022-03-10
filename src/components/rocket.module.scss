@@ -27,7 +27,7 @@
 .notReserved {
   border-radius: 4px;
   padding: 10px 14px;
-  border: 1px solid gray;
+  border: 1px solid red;
   cursor: pointer;
   font-size: 14px;
   transition: 0.2s;
@@ -35,7 +35,7 @@
 
 .reserved {
   background: white;
-  color: gray;
+  color: red;
 }
 
 .notReserved {
